@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finals Lab Task 5 - Views, Stored Procedures and Functions</title>
+    <style>
+        /* Import Google Font for the main container */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* Main Body - Street Fighter Theme */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://cdn.steamstatic.com/steamcommunity/public/images/items/1364780/d8a11446810c7ebce3ca74c5e7e2a2ce689f2f8c.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 2s forwards;
+            animation-delay: 3s;
+        }
+
+        .loading-text {
+            color: #ff0;
+            font-size: 24px;
+            animation: blink 0.5s infinite;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 5s;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Section Headers */
+        h1, h2, h3, h4 {
+            color: #ff0;
+            text-shadow: 3px 3px #f00;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 2px solid #ff0;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        /* Download Button Styling */
+        .download-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #ff0;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: #f00;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* List Styles */
+        ol, ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ff0;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        li:hover {
+            transform: translateX(10px);
+            background: rgba(255, 0, 0, 0.3);
+        }
+
+        /* Animations for loading and fading */
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Effects for click animations */
+        .click-effect {
+            position: fixed;
+            pointer-events: none;
+            font-family: 'Comic Sans MS', cursive;
+            font-weight: bold;
+            font-size: 2.5em;
+            user-select: none;
+            animation: popAndFade 0.5s ease-out forwards;
+            z-index: 9999;
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+        }
+
+        .effect-pow { color: #FF4136; }
+        .effect-bam { color: #0074D9; }
+        .effect-smash { color: #FFDC00; }
+        .effect-zap { color: #FF851B; }
+        .effect-zonk { color: #B10DC9; }
+        .effect-boom { color: #FF4136; }
+
+        @keyframes popAndFade {
+            0% {
+                transform: scale(0.5) rotate(-5deg);
+                opacity: 0;
+            }
+            25% {
+                transform: scale(1.2) rotate(5deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1) rotate(-2deg);
+            }
+            100% {
+                transform: scale(1.1) rotate(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-text">LOADING...</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Finals Lab Task 5 - Views, Stored Procedures and Functions</h1>
+        <h2>Using MySQL Clause</h2>
+
+        <!-- Download Button -->
+        <div class="download-container">
+            <a href="https://github.com/user-attachments/files/20126886/Finals.Lab.Task.5.-.Ordona.docx" class="download-btn">Download Full Documentation</a>
+        </div>
+
+        <!-- Step by Step Process -->
+        <h2>Step by Step Process</h2>
+        <ol>
+            <li>
+                <strong>Setup MySQL Workbench:</strong>
+                <ul>
+                    <li>Open XAMPP and start the MySQL server.</li>
+                    <li>Connect MySQL Workbench to the server.</li>
+                    <li>Execute practice queries using the <code>democodes.sql</code> file.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Use Inventory Database:</strong>
+                <ul>
+                    <li>Open the <code>inventory.sql</code> file to begin the tasks.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Create Views:</strong>
+                <ul>
+                    <li>Create a view to display vendor information and products with in-date from 2002 onward.</li>
+                    <li>Create a view for products with prices between 100-150.</li>
+                    <li>Create a view to compute the total price for products sold by specific vendors.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Create Stored Procedure:</strong>
+                <ul>
+                    <li>Create a stored procedure that updates the vendor name from 'Bryson, Inc.' to 'Bryson and Co'.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Create Function:</strong>
+                <ul>
+                    <li>Create a function that takes vendor code and state as parameters to display product details.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Execute and Document:</strong>
+                <ul>
+                    <li>Execute the SQL statements and capture screenshots of the commands and outputs.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <!-- Screenshots of Queries and Tables -->
+        <h2>Screenshots of Codes and Outputs</h2>
+        <h3>1. CREATE A VIEW for vendor and product info from 2002 onwards</h3>
+        <img src="https://github.com/user-attachments/assets/a8545cac-4839-46e9-b1d7-2e7713c7561d" alt="View Vendor Info 2002+">
+        <p>Output:</p>
+        <img src="https://github.com/user-attachments/assets/2c812ea2-f9be-403b-8992-e685ccdaf01e" alt="Query Output">
+
+        <h3>2. CREATE a VIEW for products priced between 100 and 150</h3>
+        <img src="https://github.com/user-attachments/assets/c61aea57-6451-4203-ad49-c65282240010" alt="Price Range View">
+        <p>Output:</p>
+        <img src="https://github.com/user-attachments/assets/c703a454-0776-4941-ae42-e6d06ece0b0a" alt="Query Output">
+
+        <h3>3. CREATE a VIEW to compute total price for selected vendors</h3>
+        <img src="https://github.com/user-attachments/assets/d03aa9d7-f526-47ee-bfd5-86a4cfb03052" alt="Total Price View">
+        <p>Output:</p>
+        <img src="https://github.com/user-attachments/assets/b1295f73-b8b5-4eb4-bd3e-c42223f784ed" alt="Query Output">
+
+        <h3>4. CREATE a stored procedure to update vendor name</h3>
+        <img src="https://github.com/user-attachments/assets/86a96b15-e271-4177-beda-d0fd2dec9e3d" alt="Stored Procedure Creation">
+        <p>Output:</p>
+        <img src="https://github.com/user-attachments/assets/28b3ca4f-879b-494a-8ec6-f3aca1e1f78f" alt="Procedure Execution">
+
+        <h3>5. CREATE a function to display product details based on vendor code and state</h3>
+        <img src="https://github.com/user-attachments/assets/025cd604-93d1-462a-927f-138dd9635991" alt="Function Creation">
+        <p>Output:</p>
+        <img src="https://github.com/user-attachments/assets/9f27a067-adb3-4131-bd69-abcc4ba7d970" alt="Function Usage">
+
+    </div>
+
+    <!-- Script for Click Effects -->
+    <script>
+        document.addEventListener('click', function(e) {
+            const effects = [
+                {text: 'POW!', class: 'effect-pow'},
+                {text: 'BAM!', class: 'effect-bam'},
+                {text: 'SMASH!', class: 'effect-smash'},
+                {text: 'ZAP!', class: 'effect-zap'},
+                {text: 'ZONK!', class: 'effect-zonk'},
+                {text: 'BOOM!', class: 'effect-boom'}
+            ];
+            const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+            const effect = document.createElement('div');
+            effect.className = `click-effect ${randomEffect.class}`;
+            effect.textContent = randomEffect.text;
+
+            // Slight random offset for dynamic feel
+            const offsetX = (Math.random() - 0.5) * 20;
+            const offsetY = (Math.random() - 0.5) * 20;
+
+            effect.style.left = (e.clientX - 50 + offsetX) + 'px';
+            effect.style.top = (e.clientY - 50 + offsetY) + 'px';
+
+            document.body.appendChild(effect);
+
+            effect.addEventListener('animationend', function() {
+                effect.remove();
+            });
+        });
+    </script>
+</body>
+</html>
